@@ -20,5 +20,5 @@ void firstTwoMaxFromSequence()
 			max2 = k;
 		}
 	}
-	cout << max1 << " " << max2;
+	cout << "First max = " << max1 << endl << "Second max = " <<  << max2 << endl;
 }
