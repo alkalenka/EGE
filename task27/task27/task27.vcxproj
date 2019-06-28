@@ -130,6 +130,9 @@
     <ClInclude Include="task27.h" />
     <ClInclude Include="usefulThings.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="firstTwoMaxFromSequence.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

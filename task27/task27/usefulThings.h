@@ -4,7 +4,4 @@
 
 using namespace std;
 
-void firstTwoMaxFromSequence()
-{
-
-}
+void firstTwoMaxFromSequence();
