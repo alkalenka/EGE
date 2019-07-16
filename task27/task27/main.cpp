@@ -1,8 +1,8 @@
 #include "usefulThings.h"
+#include "task27.h"
 
 int main()
 {
-	int a = (3 > 2 ? 5 : 7);
-	cout << a;
+	task11363();
 	return 0;
 }
