@@ -5,3 +5,5 @@
 using namespace std;
 
 void firstTwoMaxFromSequence();
+
+int factorial(int n);
