@@ -6,8 +6,23 @@ void task11363()
 	cin >> N;
 	int a = 0;
 	int b = 0;
-	for (int i = 0; i < ; i++)
+	int max = 0;
+	int min = 0;
+	int s = 0;
+	for (int i = 0; i < N; i++)
 	{
+		cin >> a >> b;
+		if ((a - b) > 0)
+		{
+			max = a;
+			min = b;
+		}
+		else
+		{
+			max = b;
+			min = a;
+		}
+		int r = max - min;
 
 	}
 }
