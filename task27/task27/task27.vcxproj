@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="firstTwoMaxFromSequence.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="task11363.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="task27.h" />
