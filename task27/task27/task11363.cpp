@@ -2,27 +2,36 @@
 
 void task11363()
 {
-	int N = 0;
-	cin >> N;
-	int a = 0;
-	int b = 0;
-	int max = 0;
-	int min = 0;
-	int s = 0;
-	for (int i = 0; i < N; i++)
+	int amount = 0;
+	cin >> amount;
+	int sumOfMax = 0;
+	int minSubtractNotDividedByThree = 10000;
+	for (int i = 0; i < amount; ++i)
 	{
+		int a = 0;
+		int b = 0;
 		cin >> a >> b;
-		if ((a - b) > 0)
+		sumOfMax += a > b ? a : b;
+		int currentSubtract = abs(a - b);
+		if (currentSubtract < minSubtractNotDividedByThree)
 		{
-			max = a;
-			min = b;
+			minSubtractNotDividedByThree = currentSubtract;
+		}
+	}
+	if (sumOfMax % 3 != 0)
+	{
+		cout << sumOfMax;
+	}
+	else
+	{
+		if (minSubtractNotDividedByThree < 10000)
+		{
+			sumOfMax -= minSubtractNotDividedByThree;
+			cout << sumOfMax;
 		}
 		else
 		{
-			max = b;
-			min = a;
+			cout << 0;
 		}
-		int r = max - min;
-
 	}
 }
