@@ -123,6 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="factorial.cpp" />
+    <ClCompile Include="factorial2017.cpp" />
+    <ClCompile Include="fipi2014.cpp" />
+    <ClCompile Include="fipi2018.cpp" />
     <ClCompile Include="firstTwoMaxFromSequence.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="task11363.cpp" />
