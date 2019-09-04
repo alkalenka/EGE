@@ -13,7 +13,7 @@ void task11363()
 		cin >> a >> b;
 		sumOfMax += a > b ? a : b;
 		int currentSubtract = abs(a - b);
-		if (currentSubtract < minSubtractNotDividedByThree && currentSubtract % 3 != 0)
+		if (currentSubtract < minSubtractNotDividedByThree)
 		{
 			minSubtractNotDividedByThree = currentSubtract;
 		}
