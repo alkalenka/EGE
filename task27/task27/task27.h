@@ -11,3 +11,5 @@ void fipi2017();
 void fipi2018();
 
 void task11363();
+
+void task7684();

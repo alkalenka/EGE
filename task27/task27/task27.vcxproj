@@ -129,7 +129,9 @@
     <ClCompile Include="fipi2018.cpp" />
     <ClCompile Include="firstTwoMaxFromSequence.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="renewmax.cpp" />
     <ClCompile Include="task11363.cpp" />
+    <ClCompile Include="task7684.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="task27.h" />
