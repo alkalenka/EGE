@@ -10,8 +10,10 @@ void task7684()
 	int max1 = 0;
 	int max2 = 0;
 	int maxOdd = -1;
+	int maxEven = -1;
 
 	bool flagOddExists = false;
+	bool flagEvenExists = false;
 
 	for (int i = 0; i < number; ++i)
 	{
@@ -32,6 +34,19 @@ void task7684()
 				maxOdd = value;
 			}
 		}
+		else 
+		{
+			flagEvenExists = true;
+
+			if (maxEven < 0)
+			{
+				maxEven = value;
+			}
+			else if (value > maxEven)
+			{
+				maxEven = value;
+			}
+		}
 	}
 
 	int controlValue = -1;
@@ -40,11 +55,11 @@ void task7684()
 
 	int calculatedControlValue = -1;
 	
-	if (!flagOddExists)
+	if (!flagOddExists || !flagEvenExists)
 	{
 		calculatedControlValue = -1;
 	}
-	else if (max1 % 2 == 0 && max2 % 2 == 0)
+	else if (max1 % 2 == 0 && max2 % 2 == 0 || max1 % 2 == 1 && max2 % 2 == 1)
 	{
 		if (max1 > max2)
 		{
@@ -55,7 +70,14 @@ void task7684()
 			calculatedControlValue = max2;
 		}
 
-		calculatedControlValue += maxOdd;
+		if (calculatedControlValue % 2 == 0)
+		{
+			calculatedControlValue += maxOdd;
+		}
+		else
+		{
+			calculatedControlValue += maxEven;
+		}
 
 	}
 	else
