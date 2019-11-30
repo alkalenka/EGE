@@ -3,19 +3,7 @@
 
 using namespace std;
 
-void printMatrix(double** a, int n = 3)
-{
-	for (int i = 0; i < n; ++i)
-	{
-		for (int j = 0; j < n; ++j)
-		{
-			cout << a[i][j] << " ";
-		}
-		cout << endl;
-	}
-}
-
-void initializeMatrixWithValue(double** a, double value, int n = 3)
+void initializeMatrixWithValue(double** a, int n, double value)
 {
 	for (int i = 0; i < n; ++i)
 	{
@@ -26,40 +14,40 @@ void initializeMatrixWithValue(double** a, double value, int n = 3)
 	}
 }
 
-void initialize1MatrixByPrepod(double** A, int N, double a)
+void initializeMatrixA(double** a, int n, double value)
 {
-	auto startTime = std::chrono::steady_clock::now();
-	for (int x = 0; x < N; ++x)
+	auto startTime = chrono::steady_clock::now();
+	for (int i = 0; i < n; ++i)
 	{
-		for (int y = 0; y < N; ++y)
+		for (int j = 0; j < n; ++j)
 		{
-			A[x][y] = a + 0.0000001 * (x + N * y);
+			a[i][j] = value + 0.0000001 * (i + n * j);
 		}
 	}
-	auto endTime = std::chrono::steady_clock::now();
-	auto elapsedNS = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-	std::cout << "initialize matix A time = " << elapsedNS.count() << " ns\n";
+	auto endTime = chrono::steady_clock::now();
+	auto elapsedNS = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+	cout << "initialize matix A time = " << elapsedNS.count() << " ns\n";
 }
 
-void initialize2MatrixByPrepod(double** B, int N, double b)
+void initializeMatrixB(double** a, int n, double value)
 {
-	auto startTime = std::chrono::steady_clock::now();
-	for (int x = 0; x < N; ++x)
+	auto startTime = chrono::steady_clock::now();
+	for (int i = 0; i < n; ++i)
 	{
-		for (int y = 0; y < N; ++y)
+		for (int j = 0; j < n; ++j)
 		{
-			B[x][y] = b - 0.0000001 * (x + N * y);
+			a[i][j] = value - 0.0000001 * (i + n * j);
 		}
 	}
-	auto endTime = std::chrono::steady_clock::now();
-	auto elapsedNS = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-	std::cout << "initialize matix B time = " << elapsedNS.count() << " ns\n";
+	auto endTime = chrono::steady_clock::now();
+	auto elapsedNS = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+	cout << "initialize matix B time = " << elapsedNS.count() << " ns\n";
 }
 
-void multMatrix1(double **a, double** b, double** mult, int n = 3)
+void multMatrix1(double** a, double** b, double** mult, int n)
 {
-	auto startTime = std::chrono::steady_clock::now();
-	initializeMatrixWithValue(mult, 0);
+	auto startTime = chrono::steady_clock::now();
+	initializeMatrixWithValue(mult, n, 0);
 	for (int i = 0; i < n; ++i)
 	{
 		for (int j = 0; j < n; ++j)
@@ -70,15 +58,15 @@ void multMatrix1(double **a, double** b, double** mult, int n = 3)
 			}
 		}
 	}
-	auto endTime = std::chrono::steady_clock::now();
-	auto elapsedNS = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-	std::cout << "mult1 time = " << elapsedNS.count() << " ns\n";
+	auto endTime = chrono::steady_clock::now();
+	auto elapsedNS = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+	cout << "mult1 time = " << elapsedNS.count() << " ns\n";
 }
 
-void multMatrix2(double** a, double** b, double** mult, int n = 3)
+void multMatrix2(double** a, double** b, double** mult, int n)
 {
-	auto startTime = std::chrono::steady_clock::now();
-	initializeMatrixWithValue(mult, 0);
+	auto startTime = chrono::steady_clock::now();
+	initializeMatrixWithValue(mult, n, 0);
 	for (int i = 0; i < n; ++i)
 	{
 		for (int k = 0; k < n; ++k)
@@ -89,9 +77,29 @@ void multMatrix2(double** a, double** b, double** mult, int n = 3)
 			}
 		}
 	}
-	auto endTime = std::chrono::steady_clock::now();
-	auto elapsedNS = std::chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime);
-	std::cout << "mult2 time = " << elapsedNS.count() << " ns\n";
+	auto endTime = chrono::steady_clock::now();
+	auto elapsedNS = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+	cout << "mult2 time = " << elapsedNS.count() << " ns\n";
+}
+
+void multMatrix3(double** a, double** b, double** mult, int n)
+{
+	auto startTime = chrono::steady_clock::now();
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			double r = 0;
+			for (int k = 0; k < n; ++k)
+			{
+				r += a[i][k] * b[k][j];
+			}
+			mult[i][j] = r;
+		}
+	}
+	auto endTime = chrono::steady_clock::now();
+	auto elapsedNS = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+	cout << "mult3 time = " << elapsedNS.count() << " ns\n";
 }
 
 int main()
@@ -100,29 +108,34 @@ int main()
 	cin >> N;
 
 	#pragma region Выделение памяти
-	double** A = new double* [N];
-	double** B = new double* [N];
-	double **C = new double* [N];
-	double** D = new double*[N];
+	double** A = new double*[N];
+	double** B = new double*[N];
+	double** C = new double*[N];
 	for (int i = 0; i < N; ++i)
 	{
 		A[i] = new double[N];
-		B[i] = new double[N] ;
+		B[i] = new double[N];
 		C[i] = new double[N];
-		D[i] = new double[N];
 	}
 	#pragma endregion
-	
+
+	#pragma region Инициалищация
 	double a = 0;
 	double b = 0;
 	cin >> a >> b;
 
-	initialize1MatrixByPrepod(A, N, a);
-	initialize2MatrixByPrepod(B, N, b);
-	
-	multMatrix1(A, B, C);
+	initializeMatrixA(A, N, a);
+	initializeMatrixB(B, N, b);
+	#pragma endregion
 
-	multMatrix2(A, B, D);
+	#pragma region Умножения, собственно
+	multMatrix1(A, B, C, N);
+	cout << "C[0][0] = " << C[0][0] << "; " << "C[N - 1][N - 1] = " << C[N - 1][N - 1] << endl;
+	multMatrix2(A, B, C, N);
+	cout << "C[0][0] = " << C[0][0] << "; " << "C[N - 1][N - 1] = " << C[N - 1][N - 1] << endl;
+	multMatrix3(A, B, C, N);
+	cout << "C[0][0] = " << C[0][0] << "; " << "C[N - 1][N - 1] = " << C[N - 1][N - 1] << endl;
+	#pragma endregion
 
 	#pragma region Очистка памяти
 	for (int i = 0; i < N; ++i)
@@ -130,12 +143,10 @@ int main()
 		delete[] A[i];
 		delete[] B[i];
 		delete[] C[i];
-		delete[] D[i];
-		delete[] A;
-		delete[] B;
-		delete[] C;
-		delete[] D;
 	}
+	delete[] A;
+	delete[] B;
+	delete[] C;
 	#pragma endregion
 
 	return 0;
