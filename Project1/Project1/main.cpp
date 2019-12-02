@@ -107,7 +107,7 @@ int main()
 	int N = 0;
 	cin >> N;
 
-	#pragma region Выделение памяти
+	#pragma region Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
 	double** A = new double*[N];
 	double** B = new double*[N];
 	double** C = new double*[N];
@@ -119,7 +119,7 @@ int main()
 	}
 	#pragma endregion
 
-	#pragma region Инициалищация
+	#pragma region РРЅРёС†РёР°Р»РёС‰Р°С†РёСЏ
 	double a = 0;
 	double b = 0;
 	cin >> a >> b;
@@ -128,7 +128,7 @@ int main()
 	initializeMatrixB(B, N, b);
 	#pragma endregion
 
-	#pragma region Умножения, собственно
+	#pragma region РЈРјРЅРѕР¶РµРЅРёСЏ, СЃРѕР±СЃС‚РІРµРЅРЅРѕ
 	multMatrix1(A, B, C, N);
 	cout << "C[0][0] = " << C[0][0] << "; " << "C[N - 1][N - 1] = " << C[N - 1][N - 1] << endl;
 	multMatrix2(A, B, C, N);
@@ -137,7 +137,7 @@ int main()
 	cout << "C[0][0] = " << C[0][0] << "; " << "C[N - 1][N - 1] = " << C[N - 1][N - 1] << endl;
 	#pragma endregion
 
-	#pragma region Очистка памяти
+	#pragma region РћС‡РёСЃС‚РєР° РїР°РјСЏС‚Рё
 	for (int i = 0; i < N; ++i)
 	{
 		delete[] A[i];
