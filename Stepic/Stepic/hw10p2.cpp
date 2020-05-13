@@ -1,0 +1,23 @@
+#include "hw10p2.h"
+#include <iostream>
+
+using namespace std;
+
+namespace hw10p2
+{
+	/*
+	На сковородку одновременно можно положить k котлет. Каждую котлету нужно с каждой стороны обжаривать m минут непрерывно.
+	За какое наименьшее время удастся поджарить с обеих сторон n котлет?
+	Дано три натуральных числа: k, m, n, не превышающих 30000.
+	Необходимо вывести единственное число – минимальное время, за которое можно поджарить все котлеты.
+	*/
+	void task1()
+	{
+		int amountOfCats;
+		int time;
+		int panCapacity;
+		cin >> panCapacity >> time >> amountOfCats;
+
+		cout << (amountOfCats / panCapacity) * 2 * time + (amountOfCats % panCapacity) * 2 * time;
+	}
+}
